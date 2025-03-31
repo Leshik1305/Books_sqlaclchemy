@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Все книги</h2>
+    {%- for book in books[-1:-16:-1] %}
+      <ul>
+        <li> Название: {{ book.title }} </li>
+        <li>
+          <a href="{{ url_for('books_by_genre', genre_id=book.genre.id) }}">Жанр: {{ book.genre.name }}</a>
+        </li>
+        <li> Добавлен: {{ book.added.strftime("%d-%m-%Y") }} </li>
+        <li> Прочитано: {{ book.is_read }} <button type="button">Сохранить</button> </li>
+      </ul>
+      <hr>
+    {%- endfor %}
+{% endblock %}
